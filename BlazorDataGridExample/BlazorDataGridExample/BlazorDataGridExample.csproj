@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>net7.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsPackable>true</IsPackable>
@@ -90,6 +90,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="2.1.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BlazorDataGridExample.Shared\BlazorDataGridExample.Shared.csproj" />
 	</ItemGroup>
 
 </Project>
