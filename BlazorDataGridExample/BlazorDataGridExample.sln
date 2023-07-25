@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDataGridExample", "BlazorDataGridExample\BlazorDataGridExample.csproj", "{4C71DCFF-79E0-4E91-8062-221C1D708D83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDataGridExample", "BlazorDataGridExample\BlazorDataGridExample.csproj", "{4C71DCFF-79E0-4E91-8062-221C1D708D83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDataGridExample.Shared", "BlazorDataGridExample.Shared\BlazorDataGridExample.Shared.csproj", "{9859C5E0-7273-4654-B5CB-7F401D530C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDataGridExample.Shared", "BlazorDataGridExample.Shared\BlazorDataGridExample.Shared.csproj", "{9859C5E0-7273-4654-B5CB-7F401D530C70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
