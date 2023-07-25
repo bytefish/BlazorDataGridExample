@@ -1,7 +1,5 @@
 ﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using System.Runtime;
-
 namespace BlazorDataGridExample.Shared.Models
 {
     /// <summary>
@@ -17,8 +15,6 @@ namespace BlazorDataGridExample.Shared.Models
         /// <summary>
         /// Gets or sets the sort direction.
         /// </summary>
-        public required SortDirection SortDirection
-        {
-            get; set; ]
+        public required SortDirection SortDirection { get; set; }
     }
-    }
+}
