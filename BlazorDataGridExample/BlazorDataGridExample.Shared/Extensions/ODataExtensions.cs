@@ -34,6 +34,30 @@ namespace BlazorDataGridExample.Shared.Extensions
         }
 
         /// <summary>
+        /// Adds a $filter clause to a <see cref="DataServiceQuery"/>.
+        /// </summary>
+        /// <typeparam name="TElement">Entity to Filter</typeparam>
+        /// <param name="dataServiceQuery">DataServiceQuery to add the $filter clause to</param>
+        /// <param name="filters">Filters to apply</param>
+        /// <returns><see cref="DataServiceQuery"/> with filtering</returns>
+        public static DataServiceQuery<TElement> Filter<TElement>(this DataServiceQuery<TElement> dataServiceQuery, List<FilterDescriptor> filters)
+        {
+            if(filters.Count == 0)
+            {
+                return dataServiceQuery;
+            }
+
+            var filter = ODataUtils.Translate(filters);
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                dataServiceQuery = dataServiceQuery.AddQueryOption("$filter", filter);
+            }
+
+            return dataServiceQuery;
+        }
+
+        /// <summary>
         /// Adds the $orderby clause to a <see cref="DataServiceQuery"/>.
         /// </summary>
         /// <typeparam name="TElement">Entity to Query for</typeparam>

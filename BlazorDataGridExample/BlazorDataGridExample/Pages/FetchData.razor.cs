@@ -39,8 +39,6 @@ namespace BlazorDataGridExample.Pages
         /// </summary>
         private readonly EventCallbackSubscriber<FilterState> CurrentFiltersChanged;
 
-
-
         public FetchData()
         {
             CurrentFiltersChanged = new(EventCallback.Factory.Create<FilterState>(this, RefreshData));
