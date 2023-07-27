@@ -12,97 +12,17 @@
 
 <h1>Customers</h1>
 
-@if (customerProvider == null)
+@if (CustomerProvider == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <FluentDataGrid id="manualGrid" RowsDataProvider="@customerProvider" Pagination="@pagination" TGridItem=Customer>
+    <FluentDataGrid @ref="CustomerDataGrid" id="manualGrid" RowsDataProvider="@CustomerProvider" Pagination="@Pagination" TGridItem=Customer>
         <PropertyColumn Title="Customer ID" Property="@(c => c!.CustomerId)" Sortable="true" Align=Align.Left></PropertyColumn>
         <PropertyColumn Title="Name" Property="@(c => c!.CustomerName)" Sortable="true" Align=Align.Left />
         <PropertyColumn Title="DeliveryAddress Line1" Property="@(c => c!.DeliveryAddressLine1)" Sortable="true" Align=Align.Center />
     </FluentDataGrid>
 
-    <FluentPaginator Value="@pagination" />
-}
-
-
-@code {
-
-    GridItemsProvider<Customer> customerProvider = default!;
-
-    PaginationState pagination = new PaginationState 
-    { 
-        ItemsPerPage = 10
-    };
-
-    protected override Task OnInitializedAsync()
-    {
-        customerProvider = async request =>
-        {
-            var response = await GetCustomers(request);
-
-            return GridItemsProviderResult.From(
-                items: response.ToList(),
-                totalItemCount: (int)response.Count);
-        };
-
-        return base.OnInitializedAsync();
-    }
-
-    private async Task<QueryOperationResponse<Customer>> GetCustomers(GridItemsProviderRequest<Customer> request)
-    {
-        var sortColumns = ConvertSortColumns(request);
-        var dataServiceQuery = GetDataServiceQuery(sortColumns, pagination.CurrentPageIndex, pagination.ItemsPerPage);
-
-        var result = await dataServiceQuery.ExecuteAsync(request.CancellationToken);
-
-        return (QueryOperationResponse<Customer>) result;
-    }
-
-    private DataServiceQuery<Customer> GetDataServiceQuery(SortColumn[] sortColumns, int pageNumber, int pageSize)
-    {
-        var query = Container.Customers.Expand(x => x.LastEditedByNavigation)
-            .Page(pageNumber, pageSize)
-            .SortBy(sortColumns)
-            .IncludeCount(true);
-
-        return (DataServiceQuery<Customer>)query;
-    }
-
-    private static SortColumn[] ConvertSortColumns(GridItemsProviderRequest<Customer> request)
-    {
-        var sortByProperties = request.GetSortByProperties();
-
-        return ConvertSortColumns(request.GetSortByProperties());
-    }
-
-    private static SortColumn[] ConvertSortColumns(IEnumerable<(string PropertyName, Microsoft.Fast.Components.FluentUI.SortDirection SortDirection)> source)
-    {
-        return source
-            .Select(x => ConvertSortColumn(x))
-            .ToArray();
-    }
-
-    private static SortColumn ConvertSortColumn((string PropertyName, FluentUiSortDirection SortDirection) source)
-    {
-        var sortDirection = ConvertSortDirection(source.SortDirection);
-
-        return new SortColumn
-        {
-            PropertyName = source.PropertyName,
-            SortDirection = sortDirection
-        };
-    }
-
-    private static SortDirection ConvertSortDirection(FluentUiSortDirection source)
-    {
-        if (source == FluentUiSortDirection.Ascending)
-        {
-            return SortDirection.Ascending;
-        }
-
-        return SortDirection.Descending;
-    }
+    <FluentPaginator Value="@Pagination" />
 }

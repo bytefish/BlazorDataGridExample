@@ -29,11 +29,6 @@ namespace BlazorDataGridExample.Shared.Models
     public class BooleanFilterDescriptor : FilterDescriptor
     {
         /// <summary>
-        /// Gets or sets the Boolean Value to filter.
-        /// </summary>
-        public bool? Value { get; set; }
-
-        /// <summary>
         /// Gets the Filter Type.
         /// </summary>
         public override FilterTypeEnum FilterType => FilterTypeEnum.BooleanFilter;
@@ -56,14 +51,19 @@ namespace BlazorDataGridExample.Shared.Models
     }
 
     /// <summary>
-    /// Numeric Filter to filter for numeric values.
+    /// Numeric Filter to filter between an lower and upper value.
     /// </summary>
-    public class NumericFilterDescriptor<TElementType> : FilterDescriptor
+    public class NumericFilterDescriptor : FilterDescriptor
     {
         /// <summary>
-        /// Gets or sets the numeric value to filter for.
+        /// Gets or sets the lower value.
         /// </summary>
-        public TElementType? Value { get; set; }
+        public double? LowerValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the upper value.
+        /// </summary>
+        public double? UpperValue { get; set; }
 
         /// <summary>
         /// Gets the Filter Type.
@@ -72,47 +72,9 @@ namespace BlazorDataGridExample.Shared.Models
     }
 
     /// <summary>
-    /// Numeric Filter to filter between an lower and upper value.
-    /// </summary>
-    /// <typeparam name="TElementType"></typeparam>
-    public class NumericRangeFilterDescriptor<TElementType> : FilterDescriptor
-    {
-        /// <summary>
-        /// Gets or sets the lower value.
-        /// </summary>
-        public TElementType? LowerValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the upper value.
-        /// </summary>
-        public TElementType? UpperValue { get; set; }
-
-        /// <summary>
-        /// Gets the Filter Type.
-        /// </summary>
-        public override FilterTypeEnum FilterType => FilterTypeEnum.NumericRangeFilter;
-    }
-
-    /// <summary>
-    /// Date Filter for filtering dates.
-    /// </summary>
-    public class DateFilterDescriptor : FilterDescriptor
-    {
-        /// <summary>
-        /// Date to filter for.
-        /// </summary>
-        public DateTimeOffset? Date { get; set; }
-
-        /// <summary>
-        /// Gets the Filter Type.
-        /// </summary>
-        public override FilterTypeEnum FilterType => FilterTypeEnum.DateFilter;
-    }
-
-    /// <summary>
     /// Date Range Filter to filter between a start and end date.
     /// </summary>
-    public class DateRangeDescriptor : FilterDescriptor
+    public class DateFilterDescriptor : FilterDescriptor
     {
         /// <summary>
         /// Start Date for range filtering.
@@ -127,6 +89,28 @@ namespace BlazorDataGridExample.Shared.Models
         /// <summary>
         /// Gets the Filter Type.
         /// </summary>
-        public override FilterTypeEnum FilterType => FilterTypeEnum.DateRangeFilter;
+        public override FilterTypeEnum FilterType => FilterTypeEnum.DateFilter;
     }
+
+    /// <summary>
+    /// Date Range Filter to filter between a start and end date.
+    /// </summary>
+    public class DateTimeFilterDescriptor : FilterDescriptor
+    {
+        /// <summary>
+        /// Start Date for range filtering.
+        /// </summary>
+        public DateTimeOffset? StartDate { get; set; }
+
+        /// <summary>
+        /// End Date for range filtering.
+        /// </summary>
+        public DateTimeOffset? EndDate { get; set; }
+
+        /// <summary>
+        /// Gets the Filter Type.
+        /// </summary>
+        public override FilterTypeEnum FilterType => FilterTypeEnum.DateTimeFilter;
+    }
+
 }

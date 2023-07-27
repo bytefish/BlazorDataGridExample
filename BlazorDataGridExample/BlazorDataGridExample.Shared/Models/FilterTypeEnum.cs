@@ -8,8 +8,7 @@ namespace BlazorDataGridExample.Shared.Models
         BooleanFilter = 1,
         StringFilter = 2,
         NumericFilter = 3,
-        NumericRangeFilter = 4,
-        DateFilter = 5,
-        DateRangeFilter = 6,
+        DateFilter = 4,
+        DateTimeFilter = 5,
     }
 }
