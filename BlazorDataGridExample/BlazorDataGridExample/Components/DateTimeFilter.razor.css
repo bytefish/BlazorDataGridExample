@@ -1,0 +1,28 @@
+﻿.filter-box {
+    display: grid;
+    min-width: 500px;
+    
+    grid-template-areas:
+        "filter-operator filter-operator"
+        "filter-text filter-text"
+        "filter-action-reset filter-action-apply"
+}
+
+.filter-operator {
+    grid-area: filter-operator;
+    padding: 5px;
+}
+
+.filter-text {
+    grid-area: filter-text;
+    padding: 5px;
+}
+
+.filter-action-reset {
+    grid-area: filter-action-reset;
+    width: 100%;
+}
+
+.filter-action-apply {
+    grid-area: filter-action-apply;
+}
