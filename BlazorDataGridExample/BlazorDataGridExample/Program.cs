@@ -20,6 +20,7 @@ builder.Services.AddScoped(sp =>
     return dataServiceContext;
 });
 
+builder.Services.AddLocalization();
 
 builder.Services.AddFluentUIComponents();
 

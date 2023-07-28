@@ -1,0 +1,20 @@
+﻿@using BlazorDataGridExample.Shared.Models;
+@using Microsoft.Fast.Components.FluentUI.Utilities;
+
+@inherits FluentComponentBase
+
+<div class="filter-box">
+    <div class="filter-operator">
+        <FilterSelector FilterOperators="filterOperatorOptions" @bind-FilterOperator="filterOperator" Class="w-100">
+        </FilterSelector>
+    </div>
+    <div class="filter-text">
+        <FluentTextField Class="w-100" @bind-Value="filterValue"></FluentTextField>
+    </div>
+    <div class="filter-action-reset">
+        <FluentButton Class="w-100" Appearance="Appearance.Neutral">Reset</FluentButton>
+    </div>
+    <div class="filter-action-apply">
+        <FluentButton Class="w-100" Appearance="Appearance.Accent">Apply</FluentButton>
+    </div>
+</div>

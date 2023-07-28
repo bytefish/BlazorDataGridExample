@@ -27,12 +27,12 @@ namespace BlazorDataGridExample.Pages
         /// <summary>
         /// The current Pagination State.
         /// </summary>
-        private readonly PaginationState Pagination = new PaginationState { ItemsPerPage = 10 };
+        private readonly PaginationState Pagination = new() { ItemsPerPage = 10 };
 
         /// <summary>
         /// The current Filter State.
         /// </summary>
-        private readonly FilterState Filters = new FilterState();
+        private readonly FilterState Filters = new();
 
         /// <summary>
         /// Reacts on Paginator Changes.
@@ -86,7 +86,7 @@ namespace BlazorDataGridExample.Pages
         private DataServiceQuery<Customer> GetDataServiceQuery(SortColumn[] sortColumns, int pageNumber, int pageSize)
         {
             var query = Container.Customers.Expand(x => x.LastEditedByNavigation)
-                    .Page(pageNumber, pageSize)
+                    .Page(pageNumber + 1, pageSize)
                 .SortBy(sortColumns)
                 .IncludeCount(true);
 

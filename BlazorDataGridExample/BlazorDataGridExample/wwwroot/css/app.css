@@ -151,3 +151,7 @@
     
     border: 1px solid transparent;
 }
+
+.w-100 {
+    width: 100% !important;
+}

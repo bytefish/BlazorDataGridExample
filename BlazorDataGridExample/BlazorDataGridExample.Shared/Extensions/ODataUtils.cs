@@ -12,7 +12,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 return string.Empty;
             }
 
-            List<string> filters = new List<string>();
+            List<string> filters = new();
 
             foreach(FilterDescriptor filterDescriptor in filterDescriptors)
             {
@@ -32,8 +32,6 @@ namespace BlazorDataGridExample.Shared.Extensions
 
         private static string TranslateFilter(FilterDescriptor filterDescriptor)
         {
-            string result = string.Empty;
-
             switch (filterDescriptor.FilterType)
             {
                 case FilterTypeEnum.BooleanFilter:
