@@ -20,7 +20,7 @@ namespace BlazorDataGridExample.Components
         /// <summary>
         /// Filter Options available for the Date Filter.
         /// </summary>
-        private FilterOperatorEnum[] filterOperatorOptions = new[]
+        private readonly FilterOperatorEnum[] filterOperatorOptions = new[]
         {
             FilterOperatorEnum.IsNull,
             FilterOperatorEnum.IsNotNull,

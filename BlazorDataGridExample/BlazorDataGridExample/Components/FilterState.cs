@@ -18,7 +18,7 @@ namespace BlazorDataGridExample.Components
         /// <summary>
         /// Column Filters.
         /// </summary>
-        private ConcurrentDictionary<string, FilterDescriptor> _filters = new();
+        private readonly ConcurrentDictionary<string, FilterDescriptor> _filters = new();
 
         /// <summary>
         /// Invoked, when the list of filters change.

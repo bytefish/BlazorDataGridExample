@@ -20,16 +20,16 @@
 else
 {
     <FluentDataGrid @ref="CustomerDataGrid" id="manualGrid" RowsDataProvider="@CustomerProvider" Pagination="@Pagination" TGridItem=Customer>
-        <PropertyColumn Title="Customer ID" Property="@(c => c!.CustomerId)" Sortable="true" Align=Align.Left>
+        <PropertyColumn Title="Customer ID" Property="@(c => c!.CustomerId)" Sortable="true" Align=Align.Start>
             <ColumnOptions>
                 <div class="search-box">
                     <StringFilter></StringFilter>
                 </div>
             </ColumnOptions>
         </PropertyColumn>
-        <PropertyColumn Title="Name" Property="@(c => c!.CustomerName)" Sortable="true" Align=Align.Left />
+        <PropertyColumn Title="Name" Property="@(c => c!.CustomerName)" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="DeliveryAddress Line1" Property="@(c => c!.DeliveryAddressLine1)" Sortable="true" Align=Align.Center />
     </FluentDataGrid>
 
-    <FluentPaginator Value="@Pagination" />
+    <FluentPaginator State="@Pagination" />
 }

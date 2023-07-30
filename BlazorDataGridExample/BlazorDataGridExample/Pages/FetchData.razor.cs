@@ -100,16 +100,21 @@ namespace BlazorDataGridExample.Pages
             return ConvertSortColumns(sortByProperties);
         }
 
-        private static SortColumn[] ConvertSortColumns(IEnumerable<(string PropertyName, Microsoft.Fast.Components.FluentUI.SortDirection SortDirection)> source)
+        private static SortColumn[] ConvertSortColumns(IReadOnlyCollection<SortedProperty>? source)
         {
+            if(source == null)
+            {
+                return Array.Empty<SortColumn>();
+            }
+
             return source
                 .Select(x => ConvertSortColumn(x))
                 .ToArray();
         }
 
-        private static SortColumn ConvertSortColumn((string PropertyName, FluentUiSortDirection SortDirection) source)
+        private static SortColumn ConvertSortColumn(SortedProperty source)
         {
-            var sortDirection = ConvertSortDirection(source.SortDirection);
+            var sortDirection = ConvertSortDirection(source.Direction);
 
             return new SortColumn
             {

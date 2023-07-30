@@ -8,9 +8,13 @@
         "filter-action-reset filter-action-apply"
 }
 
-.filter-operator {
+.filter-operator .filter-operator {
     grid-area: filter-operator;
     padding: 5px;
+}
+
+.filter-operator-select {
+    width: 100%;
 }
 
 .filter-text {
@@ -18,11 +22,29 @@
     padding: 5px;
 }
 
+    .filter-text .filter-text-field {
+        width: 100%;
+    }
+
 .filter-action-reset {
     grid-area: filter-action-reset;
     width: 100%;
+    justify-items: center;
 }
+
+    .filter-action-reset .filter-action-reset-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
 
 .filter-action-apply {
     grid-area: filter-action-apply;
+    width: 100%;
+    justify-items: center;
+}
+
+.filter-action-apply .filter-action-apply-btn {
+    width: 100%;
+    max-width: 200px;
 }

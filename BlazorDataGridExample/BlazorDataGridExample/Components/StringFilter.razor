@@ -5,16 +5,19 @@
 
 <div class="filter-box">
     <div class="filter-operator">
-        <FilterSelector FilterOperators="filterOperatorOptions" @bind-FilterOperator="filterOperator" Class="w-100">
-        </FilterSelector>
+        <label>test
+            <FilterSelector Id="test" Class="filter-operator-select" FilterOperators="filterOperatorOptions" @bind-FilterOperator="filterOperator">
+            </FilterSelector>
+        </label>
     </div>
     <div class="filter-text">
-        <FluentTextField Class="w-100" @bind-Value="filterValue"></FluentTextField>
+        
+        <FluentTextField Class="filter-text-field" @bind-Value="filterValue"></FluentTextField>
     </div>
     <div class="filter-action-reset">
-        <FluentButton Class="w-100" Appearance="Appearance.Neutral">Reset</FluentButton>
+        <FluentButton Class="filter-action-reset-button" Appearance="Appearance.Neutral">Reset</FluentButton>
     </div>
     <div class="filter-action-apply">
-        <FluentButton Class="w-100" Appearance="Appearance.Accent">Apply</FluentButton>
+        <FluentButton Class="filter-action-apply-button" Appearance="Appearance.Accent">Apply</FluentButton>
     </div>
 </div>

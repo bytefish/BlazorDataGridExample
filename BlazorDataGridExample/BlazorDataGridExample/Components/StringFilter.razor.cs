@@ -20,7 +20,7 @@ namespace BlazorDataGridExample.Components
         /// <summary>
         /// Filter Options available for the String Filter.
         /// </summary>
-        private FilterOperatorEnum[] filterOperatorOptions = new[]
+        private readonly FilterOperatorEnum[] filterOperatorOptions = new[]
         {
             FilterOperatorEnum.IsEmpty,
             FilterOperatorEnum.IsNotEmpty,

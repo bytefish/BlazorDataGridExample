@@ -10,6 +10,7 @@
               Items="@FilterOperatorOptions"
               OptionText="@(i => Loc.TranslateEnum(i.Text))"
               OptionValue="@(i => i.Value.ToString())"
+              SelectedOption="@SelectedFilterOperatorOption"
               SelectedOptionChanged="SetFilterOperator"
               Disabled="@Disabled"
               TOption="Option<FilterOperatorEnum>"
