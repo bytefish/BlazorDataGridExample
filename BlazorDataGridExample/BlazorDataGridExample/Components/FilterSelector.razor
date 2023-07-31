@@ -7,14 +7,13 @@
 <FluentSelect @attributes="AdditionalAttributes" class="@Class" style="@Style"
               Id="@Id"
               Title="@Title"
+              Disabled="@Disabled"
               Items="@FilterOperatorOptions"
+              TOption="Option<FilterOperatorEnum>"
               OptionText="@(i => Loc.TranslateEnum(i.Text))"
               OptionValue="@(i => i.Value.ToString())"
-              SelectedOption="@SelectedFilterOperatorOption"
-              SelectedOptionChanged="SetFilterOperator"
-              Disabled="@Disabled"
-              TOption="Option<FilterOperatorEnum>"
+              OptionDisabled="@(i => i.Disabled)"
               @bind-Value="FilterOperatorValue"
-              Placeholder="Search ...">
+              @bind-SelectedOption="SelectedFilterOperatorOption">
               @ChildContent
 </FluentSelect>

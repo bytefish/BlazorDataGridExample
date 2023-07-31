@@ -1,4 +1,4 @@
-﻿@page "/fetchdata"
+﻿@page "/Customers"
 @using BlazorDataGridExample.Components
 @using BlazorDataGridExample.Shared.Models;
 @using BlazorDataGridExample.Shared.Extensions;
@@ -19,7 +19,7 @@
 }
 else
 {
-    <FluentDataGrid @ref="CustomerDataGrid" id="manualGrid" RowsDataProvider="@CustomerProvider" Pagination="@Pagination" TGridItem=Customer>
+    <FluentDataGrid @ref="DataGrid" id="manualGrid" ItemsProvider="@CustomerProvider" Pagination="@Pagination" TGridItem=Customer>
         <PropertyColumn Title="Customer ID" Property="@(c => c!.CustomerId)" Sortable="true" Align=Align.Start>
             <ColumnOptions>
                 <div class="search-box">

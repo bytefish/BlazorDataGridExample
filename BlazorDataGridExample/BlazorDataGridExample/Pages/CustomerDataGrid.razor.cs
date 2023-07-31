@@ -12,7 +12,7 @@ using FluentUiSortDirection = Microsoft.Fast.Components.FluentUI.SortDirection;
 
 namespace BlazorDataGridExample.Pages
 {
-    public partial class FetchData
+    public partial class CustomerDataGrid
     {
         /// <summary>
         /// Provides the Data Items.
@@ -22,7 +22,7 @@ namespace BlazorDataGridExample.Pages
         /// <summary>
         /// DataGrid.
         /// </summary>
-        private FluentDataGrid<Customer> CustomerDataGrid = default!;
+        private FluentDataGrid<Customer> DataGrid = default!;
 
         /// <summary>
         /// The current Pagination State.
@@ -39,7 +39,7 @@ namespace BlazorDataGridExample.Pages
         /// </summary>
         private readonly EventCallbackSubscriber<FilterState> CurrentFiltersChanged;
 
-        public FetchData()
+        public CustomerDataGrid()
         {
             CurrentFiltersChanged = new(EventCallback.Factory.Create<FilterState>(this, RefreshData));
         }
@@ -69,7 +69,7 @@ namespace BlazorDataGridExample.Pages
 
         private Task RefreshData()
         {
-            return CustomerDataGrid.RefreshDataAsync();
+            return DataGrid.RefreshDataAsync();
         }
 
         private async Task<QueryOperationResponse<Customer>> GetCustomers(GridItemsProviderRequest<Customer> request)
