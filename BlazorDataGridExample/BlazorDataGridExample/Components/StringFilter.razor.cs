@@ -34,13 +34,30 @@ namespace BlazorDataGridExample.Components
             FilterOperatorEnum.EndsWith,
         };
 
-        string? filterValue;
+        protected string? _filterValue { get; set; }
 
-        FilterOperatorEnum? filterOperator;
+        protected FilterOperatorEnum? _filterOperator { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
+        }
+
+        protected virtual Task ApplyFilterAsync()
+        {
+            var stringFilter = new StringFilterDescriptor
+            {
+                PropertyName = PropertyName,
+                FilterOperator = _filterOperator,
+                Value = _filterValue
+            };
+
+            return FilterState.AddFilterAsync(stringFilter);
+        }
+
+        protected virtual Task RemoveFilterAsync() 
+        {
+            return FilterState.RemoveFilterAsync(PropertyName);
         }
     }
 }

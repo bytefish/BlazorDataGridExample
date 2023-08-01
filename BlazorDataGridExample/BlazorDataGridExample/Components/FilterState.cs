@@ -40,7 +40,7 @@ namespace BlazorDataGridExample.Components
         /// Removes a Filter.
         /// </summary>
         /// <param name="propertyName"></param>
-        public Task RemoveFilter(string propertyName)
+        public Task RemoveFilterAsync(string propertyName)
         {
             _filters.Remove(propertyName, out var _);
 

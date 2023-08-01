@@ -3,21 +3,22 @@
 
 @inherits FluentComponentBase
 
-<div class="filter-box">
-    <div class="filter-operator">
-        <label>test
-            <FilterSelector Id="test" Class="filter-operator-select" FilterOperators="filterOperatorOptions" @bind-FilterOperator="filterOperator">
-            </FilterSelector>
-        </label>
-    </div>
-    <div class="filter-text">
-        
-        <FluentTextField Class="filter-text-field" @bind-Value="filterValue"></FluentTextField>
-    </div>
-    <div class="filter-action-reset">
-        <FluentButton Class="filter-action-reset-button" Appearance="Appearance.Neutral">Reset</FluentButton>
-    </div>
-    <div class="filter-action-apply">
-        <FluentButton Class="filter-action-apply-button" Appearance="Appearance.Accent">Apply</FluentButton>
-    </div>
+<div class="filter-container">
+    <FluentGrid Justify="JustifyContent.Center">
+        <FluentGridItem xs="12">
+            <FluentLabel Typo="Typography.Body">Filter Operator:</FluentLabel>
+            <FilterSelector Class="w-100" FilterOperators="filterOperatorOptions" @bind-FilterOperator="_filterOperator"></FilterSelector>
+        </FluentGridItem>
+        <FluentGridItem xs="12">
+                <FluentLabel Typo="Typography.Body">Value:</FluentLabel>
+                <FluentTextField Class="w-100" @bind-Value="_filterValue">
+                </FluentTextField>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentButton Class="w-100" Appearance="Appearance.Neutral" OnClick="@(async () => await RemoveFilterAsync())">Reset</FluentButton>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentButton Class="w-100" Appearance="Appearance.Accent" OnClick="@(async () => await ApplyFilterAsync())">Apply</FluentButton>
+        </FluentGridItem>
+    </FluentGrid>
 </div>

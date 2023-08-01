@@ -8,12 +8,12 @@
               Id="@Id"
               Title="@Title"
               Disabled="@Disabled"
-              Items="@FilterOperatorOptions"
+              Items="@_filterOperatorOptions"
               TOption="Option<FilterOperatorEnum>"
               OptionText="@(i => Loc.TranslateEnum(i.Text))"
               OptionValue="@(i => i.Value.ToString())"
               OptionDisabled="@(i => i.Disabled)"
-              @bind-Value="FilterOperatorValue"
-              @bind-SelectedOption="SelectedFilterOperatorOption">
+              SelectedOptionChanged="SelectedOptionChanged"
+              @bind-Value="_filterOperatorAsString">
               @ChildContent
 </FluentSelect>

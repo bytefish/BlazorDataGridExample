@@ -497,3 +497,7 @@ code {
         margin-inline-end: calc(100% - env(viewport-segment-left 1 0));
     }
 }
+
+.w-100 {
+    width: 100% !important;
+}

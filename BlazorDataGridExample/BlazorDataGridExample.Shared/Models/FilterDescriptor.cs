@@ -15,7 +15,7 @@ namespace BlazorDataGridExample.Shared.Models
         /// <summary>
         /// Gets or sets the Filter Operator.
         /// </summary>
-        public required FilterOperatorEnum FilterOperator { get; set; }
+        public required FilterOperatorEnum? FilterOperator { get; set; }
 
         /// <summary>
         /// Gets or sets the Filter Type.

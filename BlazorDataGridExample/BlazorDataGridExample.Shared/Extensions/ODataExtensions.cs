@@ -64,7 +64,7 @@ namespace BlazorDataGridExample.Shared.Extensions
         /// <param name="dataServiceQuery">DataServiceQuery to add the $orderby clause to</param>
         /// <param name="columns">Columns to sort</param>
         /// <returns><see cref="DataServiceQuery"/> with sorting</returns>
-        public static DataServiceQuery<TElement> SortBy<TElement>(this DataServiceQuery<TElement> dataServiceQuery, params SortColumn[] columns)
+        public static DataServiceQuery<TElement> SortBy<TElement>(this DataServiceQuery<TElement> dataServiceQuery, List<SortColumn> columns)
         {
             var sortColumns = GetOrderByColumns(columns);
 
@@ -80,7 +80,7 @@ namespace BlazorDataGridExample.Shared.Extensions
         /// Sorts the DataGrid by the specified column, updating the column header to reflect the current sort direction.
         /// </summary>
         /// <param name="columns">The Columns to sort.</param>
-        public static string GetOrderByColumns(params SortColumn[] columns)
+        public static string GetOrderByColumns(List<SortColumn> columns)
         {
             var sortColumns = columns
                 // We need a Tag with the OData Path:

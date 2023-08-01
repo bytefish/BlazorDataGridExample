@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorDataGridExample.Components
 {
-    public partial class NumericFilter
+    public partial class NumericFilter<TItem>
     {
         /// <summary>
         /// The Property Name.
@@ -17,6 +17,12 @@ namespace BlazorDataGridExample.Components
         [Parameter]
         public required FilterState FilterState { get; set; }
 
+        [Parameter]
+        public TItem? LowerValue { get; set; }
+
+        [Parameter]
+        public TItem? UpperValue { get; set; }
+
         /// <summary>
         /// Filter Options available for the NumericFilter.
         /// </summary>
@@ -24,6 +30,8 @@ namespace BlazorDataGridExample.Components
         {
             FilterOperatorEnum.IsNull,
             FilterOperatorEnum.IsNotNull,
+            FilterOperatorEnum.IsEqualTo,
+            FilterOperatorEnum.IsNotEqualTo,
             FilterOperatorEnum.IsGreaterThan,
             FilterOperatorEnum.IsGreaterThanOrEqualTo,
             FilterOperatorEnum.IsLessThan,
@@ -32,13 +40,44 @@ namespace BlazorDataGridExample.Components
             FilterOperatorEnum.BetweenInclusive
         };
 
-        string? filterValue;
+        private bool IsLowerValueDisabled()
+        {
+            return _filterOperator == FilterOperatorEnum.IsNull 
+                || _filterOperator == FilterOperatorEnum.IsNotNull;
+        }
 
-        FilterOperatorEnum? filterOperator;
+        private bool IsUpperValueDisabled()
+        {
+            return (_filterOperator != FilterOperatorEnum.BetweenInclusive && _filterOperator != FilterOperatorEnum.BetweenExclusive);
+        }
+
+        protected double? _lowerValue { get; set; }
+
+        protected double? _upperValue { get; set; }
+
+        protected FilterOperatorEnum? _filterOperator { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
+        }
+
+        protected virtual Task ApplyFilterAsync()
+        {
+            var numericFilter = new NumericFilterDescriptor
+            {
+                PropertyName = PropertyName,
+                FilterOperator = _filterOperator,
+                LowerValue = _lowerValue,
+                UpperValue = _upperValue,
+            };
+
+            return FilterState.AddFilterAsync(numericFilter);
+        }
+
+        protected virtual Task RemoveFilterAsync()
+        {
+            return FilterState.RemoveFilterAsync(PropertyName);
         }
     }
 }

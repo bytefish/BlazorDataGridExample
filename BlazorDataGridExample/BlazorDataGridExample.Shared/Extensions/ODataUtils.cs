@@ -144,9 +144,9 @@ namespace BlazorDataGridExample.Shared.Extensions
                 case FilterOperatorEnum.IsNotNull:
                     return $"{filterDescriptor.PropertyName} ne null";
                 case FilterOperatorEnum.IsEqualTo:
-                    return $"{filterDescriptor.PropertyName} eq '${filterDescriptor.Value}'";
+                    return $"{filterDescriptor.PropertyName} eq '{filterDescriptor.Value}'";
                 case FilterOperatorEnum.IsNotEqualTo:
-                    return $"{filterDescriptor.PropertyName} neq '${filterDescriptor.Value}'";
+                    return $"{filterDescriptor.PropertyName} neq '{filterDescriptor.Value}'";
                 case FilterOperatorEnum.IsEmpty:
                     return $"({filterDescriptor.PropertyName} eq null) or ({filterDescriptor.PropertyName} eq '')";
                 case FilterOperatorEnum.IsNotEmpty:
@@ -175,6 +175,10 @@ namespace BlazorDataGridExample.Shared.Extensions
                     return $"{filterDescriptor.PropertyName} eq null";
                 case FilterOperatorEnum.IsNotNull:
                     return $"{filterDescriptor.PropertyName} ne null";
+                case FilterOperatorEnum.IsEqualTo:
+                    return $"{filterDescriptor.PropertyName} eq {low}";
+                case FilterOperatorEnum.IsNotEqualTo:
+                    return $"{filterDescriptor.PropertyName} neq {low}";
                 case FilterOperatorEnum.IsGreaterThan:
                     return $"{filterDescriptor.PropertyName} gt {low}";
                 case FilterOperatorEnum.IsGreaterThanOrEqualTo:
@@ -186,7 +190,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 case FilterOperatorEnum.BetweenExclusive:
                     return $"({filterDescriptor.PropertyName} gt {low}) and({filterDescriptor.PropertyName} lt {high})";
                 case FilterOperatorEnum.BetweenInclusive:
-                    return $"({filterDescriptor.PropertyName} ge {low}) and({filterDescriptor.PropertyName} le ${high})";
+                    return $"({filterDescriptor.PropertyName} ge {low}) and({filterDescriptor.PropertyName} le {high})";
                 default:
                     throw new ArgumentException($"Could not translate Filter Operator '{filterDescriptor.FilterOperator}'");
             }

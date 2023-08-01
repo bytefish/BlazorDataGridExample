@@ -32,7 +32,7 @@ namespace BlazorDataGridExample.Pages
         /// <summary>
         /// The current Filter State.
         /// </summary>
-        private readonly FilterState Filters = new();
+        private readonly FilterState FilterState = new();
 
         /// <summary>
         /// Reacts on Paginator Changes.
@@ -62,54 +62,57 @@ namespace BlazorDataGridExample.Pages
         protected override Task OnParametersSetAsync()
         {
             // The associated pagination state may have been added/removed/replaced
-            CurrentFiltersChanged.SubscribeOrMove(Filters.CurrentFiltersChanged);
+            CurrentFiltersChanged.SubscribeOrMove(FilterState.CurrentFiltersChanged);
 
             return Task.CompletedTask;
         }
 
         private Task RefreshData()
         {
-            return DataGrid.RefreshDataAsync();
+            return Task.CompletedTask;
+            //return DataGrid.RefreshDataAsync();
         }
 
         private async Task<QueryOperationResponse<Customer>> GetCustomers(GridItemsProviderRequest<Customer> request)
         {
-            var sortColumns = ConvertSortColumns(request);
+            var sorts = ConvertSortColumns(request);
+            var filters = FilterState.Filters.Values.ToList();
 
-            var dataServiceQuery = GetDataServiceQuery(sortColumns, Pagination.CurrentPageIndex, Pagination.ItemsPerPage);
+            var dataServiceQuery = GetDataServiceQuery(sorts, filters, Pagination.CurrentPageIndex, Pagination.ItemsPerPage);
 
             var result = await dataServiceQuery.ExecuteAsync(request.CancellationToken);
 
             return (QueryOperationResponse<Customer>)result;
         }
 
-        private DataServiceQuery<Customer> GetDataServiceQuery(SortColumn[] sortColumns, int pageNumber, int pageSize)
+        private DataServiceQuery<Customer> GetDataServiceQuery(List<SortColumn> sortColumns, List<FilterDescriptor> filters,  int pageNumber, int pageSize)
         {
             var query = Container.Customers.Expand(x => x.LastEditedByNavigation)
-                    .Page(pageNumber + 1, pageSize)
+                .Page(pageNumber + 1, pageSize)
+                .Filter(filters)
                 .SortBy(sortColumns)
                 .IncludeCount(true);
 
             return (DataServiceQuery<Customer>)query;
         }
 
-        private static SortColumn[] ConvertSortColumns(GridItemsProviderRequest<Customer> request)
+        private static List<SortColumn> ConvertSortColumns(GridItemsProviderRequest<Customer> request)
         {
             var sortByProperties = request.GetSortByProperties();
 
             return ConvertSortColumns(sortByProperties);
         }
 
-        private static SortColumn[] ConvertSortColumns(IReadOnlyCollection<SortedProperty>? source)
+        private static List<SortColumn> ConvertSortColumns(IReadOnlyCollection<SortedProperty>? source)
         {
             if(source == null)
             {
-                return Array.Empty<SortColumn>();
+                return new();
             }
 
             return source
                 .Select(x => ConvertSortColumn(x))
-                .ToArray();
+                .ToList();
         }
 
         private static SortColumn ConvertSortColumn(SortedProperty source)

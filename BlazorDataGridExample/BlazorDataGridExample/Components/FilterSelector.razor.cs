@@ -3,8 +3,10 @@
 using BlazorDataGridExample.Localization;
 using BlazorDataGridExample.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Localization;
 using Microsoft.Fast.Components.FluentUI;
+using WideWorldImportersService;
 
 namespace BlazorDataGridExample.Components
 {
@@ -39,7 +41,7 @@ namespace BlazorDataGridExample.Components
         /// The FilterOperator.
         /// </summary>
         [Parameter]
-        public FilterOperatorEnum? FilterOperator { get; set; }
+        public FilterOperatorEnum? FilterOperator { get ; set; }
 
         /// <summary>
         /// Invoked, when the Filter Operator has changed.
@@ -50,17 +52,12 @@ namespace BlazorDataGridExample.Components
         /// <summary>
         /// Available FilterOperator Options.
         /// </summary>
-        string? FilterOperatorValue;
+        private Option<FilterOperatorEnum>[]? _filterOperatorOptions { get; set; }
 
         /// <summary>
-        /// Available FilterOperator Options.
+        /// Value as String.
         /// </summary>
-        Option<FilterOperatorEnum>[]? FilterOperatorOptions;
-
-        /// <summary>
-        /// Selected Filter Operator.
-        /// </summary>
-        Option<FilterOperatorEnum>? SelectedFilterOperatorOption;
+        private string? _filterOperatorAsString { get; set; }
 
         /// <summary>
         /// Localizer.
@@ -72,21 +69,15 @@ namespace BlazorDataGridExample.Components
         {
             base.OnInitialized();
 
-            var a = Loc.GetString("FilterOperatorEnum_IsEmpty");
-
-            FilterOperatorOptions = FilterOperators
+            _filterOperatorOptions = FilterOperators
                 .Select(x => new Option<FilterOperatorEnum> { Text = x, Value = x, Selected = x == FilterOperator })
                 .ToArray();
-
-            SelectedFilterOperatorOption = FilterOperatorOptions
-                .FirstOrDefault(x => x.Value == FilterOperator);
         }
 
-        private void SetFilterOperator(Option<FilterOperatorEnum>? selectedFilterOperator)
+        private void SelectedOptionChanged(Option<FilterOperatorEnum> option)
         {
-            FilterOperator = selectedFilterOperator?.Value;
-
-            FilterOperatorChanged.InvokeAsync(selectedFilterOperator?.Value);
+            FilterOperator = option?.Value;
+            FilterOperatorChanged.InvokeAsync(FilterOperator);
         }
     }
 }
