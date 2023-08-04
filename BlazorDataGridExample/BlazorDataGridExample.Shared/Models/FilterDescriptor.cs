@@ -100,12 +100,12 @@ namespace BlazorDataGridExample.Shared.Models
         /// <summary>
         /// Start Date for range filtering.
         /// </summary>
-        public DateTimeOffset? StartDate { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
 
         /// <summary>
         /// End Date for range filtering.
         /// </summary>
-        public DateTimeOffset? EndDate { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
 
         /// <summary>
         /// Gets the Filter Type.

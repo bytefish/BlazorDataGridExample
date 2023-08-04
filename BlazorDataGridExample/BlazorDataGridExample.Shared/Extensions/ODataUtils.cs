@@ -103,8 +103,8 @@ namespace BlazorDataGridExample.Shared.Extensions
 
         private static string TranslateDateTimeFilter(DateTimeFilterDescriptor filterDescriptor)
         {
-            var startDate = ToODataDateTime(filterDescriptor.StartDate);
-            var endDate = ToODataDateTime(filterDescriptor.EndDate);
+            var startDate = ToODataDateTime(filterDescriptor.StartDateTime);
+            var endDate = ToODataDateTime(filterDescriptor.EndDateTime);
 
             switch (filterDescriptor.FilterOperator)
             {

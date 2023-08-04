@@ -3,18 +3,33 @@
 
 @inherits FluentComponentBase
 
-<div class="filter-box">
-    <div class="filter-operator">
-        <FilterSelector FilterOperators="filterOperatorOptions" @bind-FilterOperator="filterOperator" Class="w-100">
-        </FilterSelector>
-    </div>
-    <div class="filter-text">
-        <FluentTextField Class="w-100" @bind-Value="filterValue"></FluentTextField>
-    </div>
-    <div class="filter-action-reset">
-        <FluentButton Class="w-100" Appearance="Appearance.Neutral">Reset</FluentButton>
-    </div>
-    <div class="filter-action-apply">
-        <FluentButton Class="w-100" Appearance="Appearance.Accent">Apply</FluentButton>
-    </div>
+<div class="filter-container">
+    <FluentGrid Justify="JustifyContent.Center">
+        <FluentGridItem xs="12">
+            <FluentLabel Typo="Typography.Body">Filter Operator:</FluentLabel>
+            <FilterSelector FilterOperators="filterOperatorOptions" @bind-FilterOperator="_filterOperator"></FilterSelector>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentLabel Typo="Typography.Body">Start Date:</FluentLabel>
+            <FluentDatePicker @bind-Value="_startDateTime" Disabled="IsStartDateTimeDisabled()" Class="w-100"></FluentDatePicker>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentLabel Typo="Typography.Body">Start Time:</FluentLabel>
+            <FluentTimePicker @bind-Value="_startDateTime" Disabled="IsStartDateTimeDisabled()" Class="w-100"></FluentTimePicker>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentLabel Typo="Typography.Body">End Date:</FluentLabel>
+            <FluentDatePicker @bind-Value="_endDateTime" Disabled="IsStartDateTimeDisabled()" Class="w-100"></FluentDatePicker>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentLabel Typo="Typography.Body">End Time:</FluentLabel>
+            <FluentTimePicker @bind-Value="_endDateTime" Disabled="IsEndDateTimeDisabled()" Class="w-100"></FluentTimePicker>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentButton Class="w-100" Appearance="Appearance.Neutral" OnClick="@(async () => await RemoveFilterAsync())">Reset</FluentButton>
+        </FluentGridItem>
+        <FluentGridItem xs="6">
+            <FluentButton Class="w-100" Appearance="Appearance.Accent" OnClick="@(async () => await ApplyFilterAsync())">Apply</FluentButton>
+        </FluentGridItem>
+    </FluentGrid>
 </div>

@@ -34,13 +34,46 @@ namespace BlazorDataGridExample.Components
             FilterOperatorEnum.EndsWith,
         };
 
-        protected string? _filterValue { get; set; }
+        private bool IsValueDisabled()
+        {
+            return _filterOperator == FilterOperatorEnum.None
+                || _filterOperator == FilterOperatorEnum.IsNull
+                || _filterOperator == FilterOperatorEnum.IsNotNull;
+        }
+
+        protected string? _value { get; set; }
 
         protected FilterOperatorEnum _filterOperator { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
+            SetFilterValues();
+        }
+
+        private void SetFilterValues()
+        {
+            if (!FilterState.Filters.TryGetValue(PropertyName, out var filterDescriptor))
+            {
+                _filterOperator = FilterOperatorEnum.None;
+                _value = null;
+
+                return;
+            }
+
+            var stringFilterDescriptor = filterDescriptor as StringFilterDescriptor;
+
+            if (stringFilterDescriptor == null)
+            {
+                _filterOperator = FilterOperatorEnum.None;
+                _value = null;
+
+                return;
+            }
+
+            _filterOperator = stringFilterDescriptor.FilterOperator;
+            _value = stringFilterDescriptor.Value;
         }
 
         protected virtual Task ApplyFilterAsync()
@@ -49,15 +82,18 @@ namespace BlazorDataGridExample.Components
             {
                 PropertyName = PropertyName,
                 FilterOperator = _filterOperator,
-                Value = _filterValue
+                Value = _value
             };
 
             return FilterState.AddFilterAsync(stringFilter);
         }
 
-        protected virtual Task RemoveFilterAsync() 
+        protected virtual async Task RemoveFilterAsync()
         {
-            return FilterState.RemoveFilterAsync(PropertyName);
+            _filterOperator = FilterOperatorEnum.None;
+            _value = null;
+
+            await FilterState.RemoveFilterAsync(PropertyName);
         }
     }
 }
