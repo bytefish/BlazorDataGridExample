@@ -15,9 +15,8 @@
         </FluentGridItem>
         <FluentGridItem xs="12">
             <FluentLabel Typo="Typography.Body">End Date:</FluentLabel>
-            <FluentDatePicker @bind-Value="_endDateTime" Disabled="IsStartDateTimeDisabled()" Class="w-100"></FluentDatePicker>
+            <FluentDatePicker @bind-Value="_endDateTime" Disabled="IsEndDateTimeDisabled()" Class="w-100"></FluentDatePicker>
         </FluentGridItem>
-
         <FluentGridItem xs="6">
             <FluentButton Class="w-100" Appearance="Appearance.Neutral" OnClick="@(async () => await RemoveFilterAsync())">Reset</FluentButton>
         </FluentGridItem>

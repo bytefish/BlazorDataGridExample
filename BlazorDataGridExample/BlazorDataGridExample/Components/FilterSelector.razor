@@ -8,7 +8,7 @@
               Title="@Title"
               Disabled="@Disabled"
               Items="@FilterOperators"
-              OptionText="@(i => i.ToString())"
+              OptionText="@(i => Loc.TranslateEnum(i))"
               OptionValue="@(i => i.ToString())"
               TOption=FilterOperatorEnum
               Value=@_value
