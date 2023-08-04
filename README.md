@@ -1,6 +1,15 @@
-# Blazor Data Grid Example #
+# Using a FluentUI Data Grid with ASP.NET Core OData  #
 
-This repository shows how to use a Fluent UI DataGrid in Blazor.
+[Blazor]: https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor
+[Fluent UI Blazor]: https://www.fluentui-blazor.net/
+
+This repository shows how to use Blazor, Fluent UI Blazor and OData to display data 
+in the Fluent UI Data Grid. It uses the WideWorldImporters Backend to provide 
+the data, see:
+
+* [https://www.bytefish.de/blog/aspnet_core_odata_example.html](https://www.bytefish.de/blog/aspnet_core_odata_example.html)
+
+
 
 This is an Open Source project, feel free to contribute!
 

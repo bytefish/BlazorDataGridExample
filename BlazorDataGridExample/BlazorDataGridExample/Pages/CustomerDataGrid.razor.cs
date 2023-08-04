@@ -5,10 +5,7 @@ using BlazorDataGridExample.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.OData.Client;
-using System.Net.NetworkInformation;
 using WideWorldImportersService;
-using SortDirection = BlazorDataGridExample.Shared.Models.SortDirection;
-using FluentUiSortDirection = Microsoft.Fast.Components.FluentUI.SortDirection;
 
 namespace BlazorDataGridExample.Pages
 {
@@ -72,7 +69,7 @@ namespace BlazorDataGridExample.Pages
 
         private async Task<QueryOperationResponse<Customer>> GetCustomers(GridItemsProviderRequest<Customer> request)
         {
-            var sorts = ConvertSortColumns(request);
+            var sorts = DataGridUtils.GetSortColumns(request);
             var filters = FilterState.Filters.Values.ToList();
 
             var dataServiceQuery = GetDataServiceQuery(sorts, filters, Pagination.CurrentPageIndex, Pagination.ItemsPerPage);
@@ -92,46 +89,5 @@ namespace BlazorDataGridExample.Pages
 
             return (DataServiceQuery<Customer>)query;
         }
-
-        private static List<SortColumn> ConvertSortColumns(GridItemsProviderRequest<Customer> request)
-        {
-            var sortByProperties = request.GetSortByProperties();
-
-            return ConvertSortColumns(sortByProperties);
-        }
-
-        private static List<SortColumn> ConvertSortColumns(IReadOnlyCollection<SortedProperty>? source)
-        {
-            if(source == null)
-            {
-                return new();
-            }
-
-            return source
-                .Select(x => ConvertSortColumn(x))
-                .ToList();
-        }
-
-        private static SortColumn ConvertSortColumn(SortedProperty source)
-        {
-            var sortDirection = ConvertSortDirection(source.Direction);
-
-            return new SortColumn
-            {
-                PropertyName = source.PropertyName,
-                SortDirection = sortDirection
-            };
-        }
-
-        private static SortDirection ConvertSortDirection(FluentUiSortDirection source)
-        {
-            if (source == FluentUiSortDirection.Ascending)
-            {
-                return SortDirection.Ascending;
-            }
-
-            return SortDirection.Descending;
-        }
-
     }
 }
