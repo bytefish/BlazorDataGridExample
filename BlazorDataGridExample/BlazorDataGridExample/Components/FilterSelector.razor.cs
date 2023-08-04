@@ -3,15 +3,18 @@
 using BlazorDataGridExample.Localization;
 using BlazorDataGridExample.Shared.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Localization;
-using Microsoft.Fast.Components.FluentUI;
-using WideWorldImportersService;
 
 namespace BlazorDataGridExample.Components
 {
     public partial class FilterSelector
     {
+        /// <summary>
+        /// Localizer.
+        /// </summary>
+        [Inject]
+        public IStringLocalizer<SharedResource> Loc { get; set; } = default!;
+        
         /// <summary>
         /// Text used on aria-label attribute.
         /// </summary>
@@ -41,43 +44,37 @@ namespace BlazorDataGridExample.Components
         /// The FilterOperator.
         /// </summary>
         [Parameter]
-        public FilterOperatorEnum? FilterOperator { get ; set; }
+        public FilterOperatorEnum FilterOperator { get; set; }
 
+        
         /// <summary>
         /// Invoked, when the Filter Operator has changed.
         /// </summary>
         [Parameter]
-        public EventCallback<FilterOperatorEnum?> FilterOperatorChanged { get; set; }
+        public EventCallback<FilterOperatorEnum> FilterOperatorChanged { get; set; }
 
         /// <summary>
-        /// Available FilterOperator Options.
+        /// Value.
         /// </summary>
-        private Option<FilterOperatorEnum>[]? _filterOperatorOptions { get; set; }
+        string? _value { get; set; }
 
         /// <summary>
-        /// Value as String.
+        /// Filter Operator.
         /// </summary>
-        private string? _filterOperatorAsString { get; set; }
+        private FilterOperatorEnum _filterOperator { get; set; }
 
-        /// <summary>
-        /// Localizer.
-        /// </summary>
-        [Inject]
-        public IStringLocalizer<SharedResource> Loc { get; set; } = default!;
-
-        protected override void OnInitialized()
+        protected override void OnParametersSet()
         {
-            base.OnInitialized();
-
-            _filterOperatorOptions = FilterOperators
-                .Select(x => new Option<FilterOperatorEnum> { Text = x, Value = x, Selected = x == FilterOperator })
-                .ToArray();
+            _filterOperator = FilterOperator;
+            _value = FilterOperator.ToString();
         }
 
-        private void SelectedOptionChanged(Option<FilterOperatorEnum> option)
+        public void OnSelectedValueChanged(FilterOperatorEnum value)
         {
-            FilterOperator = option?.Value;
-            FilterOperatorChanged.InvokeAsync(FilterOperator);
+            _filterOperator = value;
+            _value = value.ToString();
+
+            FilterOperatorChanged.InvokeAsync(_filterOperator);
         }
     }
 }

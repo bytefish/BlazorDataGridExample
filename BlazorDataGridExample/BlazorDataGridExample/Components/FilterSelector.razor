@@ -1,6 +1,5 @@
 ﻿@using BlazorDataGridExample.Shared.Models;
 @using BlazorDataGridExample.Infrastructure;
-
 @using Microsoft.Fast.Components.FluentUI.Utilities;
 
 @inherits FluentComponentBase
@@ -8,12 +7,11 @@
               Id="@Id"
               Title="@Title"
               Disabled="@Disabled"
-              Items="@_filterOperatorOptions"
-              TOption="Option<FilterOperatorEnum>"
-              OptionText="@(i => Loc.TranslateEnum(i.Text))"
-              OptionValue="@(i => i.Value.ToString())"
-              OptionDisabled="@(i => i.Disabled)"
-              SelectedOptionChanged="SelectedOptionChanged"
-              @bind-Value="_filterOperatorAsString">
-              @ChildContent
+              Items="@FilterOperators"
+              OptionText="@(i => i.ToString())"
+              OptionValue="@(i => i.ToString())"
+              TOption=FilterOperatorEnum
+              Value=@_value
+              SelectedOption=@_filterOperator
+              SelectedOptionChanged="OnSelectedValueChanged">
 </FluentSelect>

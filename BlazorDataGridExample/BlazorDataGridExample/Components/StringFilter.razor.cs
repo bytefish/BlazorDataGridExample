@@ -36,7 +36,7 @@ namespace BlazorDataGridExample.Components
 
         protected string? _filterValue { get; set; }
 
-        protected FilterOperatorEnum? _filterOperator { get; set; }
+        protected FilterOperatorEnum _filterOperator { get; set; }
 
         protected override void OnInitialized()
         {

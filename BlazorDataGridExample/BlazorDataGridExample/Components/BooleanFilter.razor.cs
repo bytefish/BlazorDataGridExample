@@ -30,7 +30,7 @@ namespace BlazorDataGridExample.Components
 
         string? filterValue;
 
-        FilterOperatorEnum? filterOperator;
+        FilterOperatorEnum filterOperator;
 
         protected override void OnInitialized()
         {

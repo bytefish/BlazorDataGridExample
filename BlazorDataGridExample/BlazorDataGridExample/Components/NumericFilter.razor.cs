@@ -17,17 +17,12 @@ namespace BlazorDataGridExample.Components
         [Parameter]
         public required FilterState FilterState { get; set; }
 
-        [Parameter]
-        public TItem? LowerValue { get; set; }
-
-        [Parameter]
-        public TItem? UpperValue { get; set; }
-
         /// <summary>
         /// Filter Options available for the NumericFilter.
         /// </summary>
         private readonly FilterOperatorEnum[] filterOperatorOptions = new[]
         {
+            FilterOperatorEnum.None,
             FilterOperatorEnum.IsNull,
             FilterOperatorEnum.IsNotNull,
             FilterOperatorEnum.IsEqualTo,
@@ -42,7 +37,8 @@ namespace BlazorDataGridExample.Components
 
         private bool IsLowerValueDisabled()
         {
-            return _filterOperator == FilterOperatorEnum.IsNull 
+            return  _filterOperator == FilterOperatorEnum.None
+                || _filterOperator == FilterOperatorEnum.IsNull 
                 || _filterOperator == FilterOperatorEnum.IsNotNull;
         }
 
@@ -55,11 +51,40 @@ namespace BlazorDataGridExample.Components
 
         protected double? _upperValue { get; set; }
 
-        protected FilterOperatorEnum? _filterOperator { get; set; }
+        protected FilterOperatorEnum _filterOperator { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
+            SetFilterValues();
+        }
+
+        private void SetFilterValues()
+        {
+            if(!FilterState.Filters.TryGetValue(PropertyName, out var filterDescriptor))
+            {
+                _filterOperator = FilterOperatorEnum.None;
+                _lowerValue = null;
+                _upperValue = null;
+
+                return;            
+            }
+
+            var numericFilterDescriptor = filterDescriptor as NumericFilterDescriptor;
+
+            if(numericFilterDescriptor == null)
+            {
+                _filterOperator = FilterOperatorEnum.None;
+                _lowerValue = null;
+                _upperValue = null;
+                
+                return;
+            }
+
+            _filterOperator = numericFilterDescriptor.FilterOperator;
+            _lowerValue = numericFilterDescriptor.LowerValue;
+            _upperValue = numericFilterDescriptor.UpperValue;
         }
 
         protected virtual Task ApplyFilterAsync()
@@ -75,9 +100,13 @@ namespace BlazorDataGridExample.Components
             return FilterState.AddFilterAsync(numericFilter);
         }
 
-        protected virtual Task RemoveFilterAsync()
+        protected virtual async Task RemoveFilterAsync()
         {
-            return FilterState.RemoveFilterAsync(PropertyName);
+            _filterOperator = FilterOperatorEnum.None;
+            _lowerValue = null;
+            _upperValue = null;
+            
+            await FilterState.RemoveFilterAsync(PropertyName);
         }
     }
 }

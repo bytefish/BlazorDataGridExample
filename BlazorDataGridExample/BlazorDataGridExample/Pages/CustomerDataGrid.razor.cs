@@ -69,8 +69,7 @@ namespace BlazorDataGridExample.Pages
 
         private Task RefreshData()
         {
-            return Task.CompletedTask;
-            //return DataGrid.RefreshDataAsync();
+            return DataGrid.RefreshDataAsync();
         }
 
         private async Task<QueryOperationResponse<Customer>> GetCustomers(GridItemsProviderRequest<Customer> request)
