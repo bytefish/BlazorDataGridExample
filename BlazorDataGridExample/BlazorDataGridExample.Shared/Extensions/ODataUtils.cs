@@ -81,7 +81,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 case FilterOperatorEnum.IsEqualTo:
                     return $"date({filterDescriptor.PropertyName}) eq {startDate}";
                 case FilterOperatorEnum.IsNotEqualTo:
-                    return $"date({filterDescriptor.PropertyName}) neq {startDate}";
+                    return $"date({filterDescriptor.PropertyName}) ne {startDate}";
                 case FilterOperatorEnum.After:
                 case FilterOperatorEnum.IsGreaterThan:
                     return $"date({filterDescriptor.PropertyName}) gt {startDate}";
@@ -115,7 +115,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 case FilterOperatorEnum.IsEqualTo:
                     return $"{filterDescriptor.PropertyName} eq {startDate}";
                 case FilterOperatorEnum.IsNotEqualTo:
-                    return $"{filterDescriptor.PropertyName} neq {startDate}";
+                    return $"{filterDescriptor.PropertyName} ne {startDate}";
                 case FilterOperatorEnum.After:
                 case FilterOperatorEnum.IsGreaterThan:
                     return $"{filterDescriptor.PropertyName} gt {startDate}";
@@ -146,7 +146,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 case FilterOperatorEnum.IsEqualTo:
                     return $"{filterDescriptor.PropertyName} eq '{filterDescriptor.Value}'";
                 case FilterOperatorEnum.IsNotEqualTo:
-                    return $"{filterDescriptor.PropertyName} neq '{filterDescriptor.Value}'";
+                    return $"{filterDescriptor.PropertyName} ne '{filterDescriptor.Value}'";
                 case FilterOperatorEnum.IsEmpty:
                     return $"({filterDescriptor.PropertyName} eq null) or ({filterDescriptor.PropertyName} eq '')";
                 case FilterOperatorEnum.IsNotEmpty:
@@ -178,7 +178,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 case FilterOperatorEnum.IsEqualTo:
                     return $"{filterDescriptor.PropertyName} eq {low}";
                 case FilterOperatorEnum.IsNotEqualTo:
-                    return $"{filterDescriptor.PropertyName} neq {low}";
+                    return $"{filterDescriptor.PropertyName} ne {low}";
                 case FilterOperatorEnum.IsGreaterThan:
                     return $"{filterDescriptor.PropertyName} gt {low}";
                 case FilterOperatorEnum.IsGreaterThanOrEqualTo:

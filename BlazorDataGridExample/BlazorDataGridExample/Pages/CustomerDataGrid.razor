@@ -22,7 +22,7 @@ else
     <FluentDataGrid @ref="DataGrid" id="manualGrid" ItemsProvider="@CustomerProvider" Pagination="@Pagination" TGridItem=Customer>
         <PropertyColumn Title="Customer ID" Property="@(c => c!.CustomerId)" Sortable="true" Align=Align.Start>
             <ColumnOptions>
-                <NumericFilter TItem="int" PropertyName="CustomerID" FilterState="FilterState"></NumericFilter>
+                <NumericFilter TItem="int" PropertyName="CustomerId" FilterState="FilterState"></NumericFilter>
             </ColumnOptions>
         </PropertyColumn>
         <PropertyColumn Title="Name" Property="@(c => c!.CustomerName)" Sortable="true" Align=Align.Start>
