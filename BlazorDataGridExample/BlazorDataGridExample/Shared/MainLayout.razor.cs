@@ -1,4 +1,6 @@
-﻿namespace BlazorDataGridExample.Shared
+﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+namespace BlazorDataGridExample.Shared
 {
     using System.Reflection;
     using Microsoft.AspNetCore.Components;

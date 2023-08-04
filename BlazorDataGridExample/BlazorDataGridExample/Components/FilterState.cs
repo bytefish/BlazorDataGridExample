@@ -1,4 +1,6 @@
-﻿using BlazorDataGridExample.Infrastructure;
+﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using BlazorDataGridExample.Infrastructure;
 using BlazorDataGridExample.Shared.Models;
 using Microsoft.Fast.Components.FluentUI;
 using System.Collections.Concurrent;

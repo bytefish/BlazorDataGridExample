@@ -1,4 +1,6 @@
-﻿using BlazorDataGridExample.Shared.Models;
+﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using BlazorDataGridExample.Shared.Models;
 using System.Globalization;
 
 namespace BlazorDataGridExample.Shared.Extensions

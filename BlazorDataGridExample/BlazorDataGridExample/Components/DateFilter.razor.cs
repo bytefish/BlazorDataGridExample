@@ -1,6 +1,7 @@
-﻿using BlazorDataGridExample.Shared.Models;
+﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using BlazorDataGridExample.Shared.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Fast.Components.FluentUI;
 
 namespace BlazorDataGridExample.Components
 {

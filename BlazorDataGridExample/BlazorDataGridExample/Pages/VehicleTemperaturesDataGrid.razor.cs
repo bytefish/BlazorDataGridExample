@@ -1,4 +1,6 @@
-﻿using BlazorDataGridExample.Components;
+﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using BlazorDataGridExample.Components;
 using BlazorDataGridExample.Infrastructure;
 using BlazorDataGridExample.Shared.Extensions;
 using BlazorDataGridExample.Shared.Models;

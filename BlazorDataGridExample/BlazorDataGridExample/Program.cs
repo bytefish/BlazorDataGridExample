@@ -1,6 +1,8 @@
 using BlazorDataGridExample;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.OData.Client;
 
