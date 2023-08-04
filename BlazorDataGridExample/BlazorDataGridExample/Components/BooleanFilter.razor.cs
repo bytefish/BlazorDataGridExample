@@ -47,16 +47,16 @@ namespace BlazorDataGridExample.Components
                 return;
             }
 
-            var dateTimeFilterDescriptor = filterDescriptor as DateTimeFilterDescriptor;
+            var booleanFilterDescriptor = filterDescriptor as BooleanFilterDescriptor;
 
-            if (dateTimeFilterDescriptor == null)
+            if (booleanFilterDescriptor == null)
             {
                 _filterOperator = FilterOperatorEnum.None;
 
                 return;
             }
 
-            _filterOperator = dateTimeFilterDescriptor.FilterOperator;
+            _filterOperator = booleanFilterDescriptor.FilterOperator;
         }
 
         protected virtual Task ApplyFilterAsync()
