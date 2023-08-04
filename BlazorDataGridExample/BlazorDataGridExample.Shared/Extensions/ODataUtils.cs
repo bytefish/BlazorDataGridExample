@@ -58,6 +58,8 @@ namespace BlazorDataGridExample.Shared.Extensions
                     return $"{filterDescriptor.PropertyName} eq null";
                 case FilterOperatorEnum.IsNotNull:
                     return $"{filterDescriptor.PropertyName} ne null";
+                case FilterOperatorEnum.All:
+                    return $"{filterDescriptor.PropertyName} ne null";
                 case FilterOperatorEnum.Yes:
                     return $"{filterDescriptor.PropertyName} eq true";
                 case FilterOperatorEnum.No:
@@ -75,9 +77,9 @@ namespace BlazorDataGridExample.Shared.Extensions
             switch (filterDescriptor.FilterOperator)
             {
                 case FilterOperatorEnum.IsNull:
-                    return $"date({filterDescriptor.PropertyName}) eq null";
+                    return $"{filterDescriptor.PropertyName} eq null";
                 case FilterOperatorEnum.IsNotNull:
-                    return $"date({filterDescriptor.PropertyName}) ne null";
+                    return $"{filterDescriptor.PropertyName} ne null";
                 case FilterOperatorEnum.IsEqualTo:
                     return $"date({filterDescriptor.PropertyName}) eq {startDate}";
                 case FilterOperatorEnum.IsNotEqualTo:

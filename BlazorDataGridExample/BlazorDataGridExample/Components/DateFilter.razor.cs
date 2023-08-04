@@ -1,5 +1,6 @@
 ﻿using BlazorDataGridExample.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Fast.Components.FluentUI;
 
 namespace BlazorDataGridExample.Components
 {
@@ -35,7 +36,6 @@ namespace BlazorDataGridExample.Components
             FilterOperatorEnum.BetweenExclusive,
             FilterOperatorEnum.BetweenInclusive
         };
-
 
         protected FilterOperatorEnum _filterOperator { get; set; }
 
@@ -73,9 +73,9 @@ namespace BlazorDataGridExample.Components
                 return;
             }
 
-            var dateTimeFilterDescriptor = filterDescriptor as DateTimeFilterDescriptor;
+            var dateFilterDescriptor = filterDescriptor as DateFilterDescriptor;
 
-            if (dateTimeFilterDescriptor == null)
+            if (dateFilterDescriptor == null)
             {
                 _filterOperator = FilterOperatorEnum.None;
                 _startDateTime = null;
@@ -84,19 +84,19 @@ namespace BlazorDataGridExample.Components
                 return;
             }
 
-            _filterOperator = dateTimeFilterDescriptor.FilterOperator;
-            _startDateTime = dateTimeFilterDescriptor.StartDateTime?.DateTime;
-            _startDateTime = dateTimeFilterDescriptor.EndDateTime?.DateTime;
+            _filterOperator = dateFilterDescriptor.FilterOperator;
+            _startDateTime = dateFilterDescriptor.StartDate?.DateTime;
+            _endDateTime = dateFilterDescriptor.EndDate?.DateTime;
         }
 
         protected virtual Task ApplyFilterAsync()
         {
-            var numericFilter = new DateTimeFilterDescriptor
+            var numericFilter = new DateFilterDescriptor
             {
                 PropertyName = PropertyName,
                 FilterOperator = _filterOperator,
-                StartDateTime = _startDateTime,
-                EndDateTime = _endDateTime,
+                StartDate = _startDateTime,
+                EndDate = _endDateTime,
             };
 
             return FilterState.AddFilterAsync(numericFilter);

@@ -36,7 +36,6 @@ namespace BlazorDataGridExample.Components
             FilterOperatorEnum.BetweenInclusive
         };
 
-
         protected FilterOperatorEnum _filterOperator { get; set; }
 
         protected DateTime? _startDateTime { get; set; }
@@ -86,7 +85,7 @@ namespace BlazorDataGridExample.Components
 
             _filterOperator = dateTimeFilterDescriptor.FilterOperator;
             _startDateTime = dateTimeFilterDescriptor.StartDateTime?.DateTime;
-            _startDateTime = dateTimeFilterDescriptor.EndDateTime?.DateTime;
+            _endDateTime = dateTimeFilterDescriptor.EndDateTime?.DateTime;
         }
 
         protected virtual Task ApplyFilterAsync()

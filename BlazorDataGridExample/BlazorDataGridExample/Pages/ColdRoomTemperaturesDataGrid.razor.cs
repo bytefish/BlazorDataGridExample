@@ -5,24 +5,23 @@ using BlazorDataGridExample.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.OData.Client;
-using System.Net.NetworkInformation;
 using WideWorldImportersService;
 using SortDirection = BlazorDataGridExample.Shared.Models.SortDirection;
 using FluentUiSortDirection = Microsoft.Fast.Components.FluentUI.SortDirection;
 
 namespace BlazorDataGridExample.Pages
 {
-    public partial class CustomerDataGrid
+    public partial class ColdRoomTemperaturesDataGrid
     {
         /// <summary>
         /// Provides the Data Items.
         /// </summary>
-        private GridItemsProvider<Customer> CustomerProvider = default!;
+        private GridItemsProvider<ColdRoomTemperature> ColdRoomTemperatureProvider = default!;
 
         /// <summary>
         /// DataGrid.
         /// </summary>
-        private FluentDataGrid<Customer> DataGrid = default!;
+        private FluentDataGrid<ColdRoomTemperature> DataGrid = default!;
 
         /// <summary>
         /// The current Pagination State.
@@ -39,14 +38,14 @@ namespace BlazorDataGridExample.Pages
         /// </summary>
         private readonly EventCallbackSubscriber<FilterState> CurrentFiltersChanged;
 
-        public CustomerDataGrid()
+        public ColdRoomTemperaturesDataGrid()
         {
             CurrentFiltersChanged = new(EventCallback.Factory.Create<FilterState>(this, RefreshData));
         }
 
         protected override Task OnInitializedAsync()
         {
-            CustomerProvider = async request =>
+            ColdRoomTemperatureProvider = async request =>
             {
                 var response = await GetCustomers(request);
 
@@ -70,7 +69,7 @@ namespace BlazorDataGridExample.Pages
             return DataGrid.RefreshDataAsync();
         }
 
-        private async Task<QueryOperationResponse<Customer>> GetCustomers(GridItemsProviderRequest<Customer> request)
+        private async Task<QueryOperationResponse<ColdRoomTemperature>> GetCustomers(GridItemsProviderRequest<ColdRoomTemperature> request)
         {
             var sorts = ConvertSortColumns(request);
             var filters = FilterState.Filters.Values.ToList();
@@ -79,21 +78,21 @@ namespace BlazorDataGridExample.Pages
 
             var result = await dataServiceQuery.ExecuteAsync(request.CancellationToken);
 
-            return (QueryOperationResponse<Customer>)result;
+            return (QueryOperationResponse<ColdRoomTemperature>)result;
         }
 
-        private DataServiceQuery<Customer> GetDataServiceQuery(List<SortColumn> sortColumns, List<FilterDescriptor> filters,  int pageNumber, int pageSize)
+        private DataServiceQuery<ColdRoomTemperature> GetDataServiceQuery(List<SortColumn> sortColumns, List<FilterDescriptor> filters,  int pageNumber, int pageSize)
         {
-            var query = Container.Customers.Expand(x => x.LastEditedByNavigation)
+            var query = Container.ColdRoomTemperatures
                 .Page(pageNumber + 1, pageSize)
                 .Filter(filters)
                 .SortBy(sortColumns)
                 .IncludeCount(true);
 
-            return (DataServiceQuery<Customer>)query;
+            return (DataServiceQuery<ColdRoomTemperature>)query;
         }
 
-        private static List<SortColumn> ConvertSortColumns(GridItemsProviderRequest<Customer> request)
+        private static List<SortColumn> ConvertSortColumns(GridItemsProviderRequest<ColdRoomTemperature> request)
         {
             var sortByProperties = request.GetSortByProperties();
 

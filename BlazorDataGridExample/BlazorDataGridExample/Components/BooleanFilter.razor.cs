@@ -16,6 +16,7 @@ namespace BlazorDataGridExample.Components
         /// </summary>
         [Parameter]
         public required FilterState FilterState { get; set; }
+
         /// <summary>
         /// Filter Options available for the DateTimeFilter.
         /// </summary>
@@ -28,12 +29,7 @@ namespace BlazorDataGridExample.Components
             FilterOperatorEnum.No,
         };
 
-
         protected FilterOperatorEnum _filterOperator { get; set; }
-
-        protected DateTime? _startDateTime { get; set; }
-
-        protected DateTime? _endDateTime { get; set; }
 
         protected override void OnInitialized()
         {
@@ -42,25 +38,11 @@ namespace BlazorDataGridExample.Components
             SetFilterValues();
         }
 
-        private bool IsStartDateTimeDisabled()
-        {
-            return _filterOperator == FilterOperatorEnum.None
-                || _filterOperator == FilterOperatorEnum.IsNull
-                || _filterOperator == FilterOperatorEnum.IsNotNull;
-        }
-
-        private bool IsEndDateTimeDisabled()
-        {
-            return (_filterOperator != FilterOperatorEnum.BetweenInclusive && _filterOperator != FilterOperatorEnum.BetweenExclusive);
-        }
-
         private void SetFilterValues()
         {
             if (!FilterState.Filters.TryGetValue(PropertyName, out var filterDescriptor))
             {
                 _filterOperator = FilterOperatorEnum.None;
-                _startDateTime = null;
-                _endDateTime = null;
 
                 return;
             }
@@ -70,25 +52,19 @@ namespace BlazorDataGridExample.Components
             if (dateTimeFilterDescriptor == null)
             {
                 _filterOperator = FilterOperatorEnum.None;
-                _startDateTime = null;
-                _endDateTime = null;
 
                 return;
             }
 
             _filterOperator = dateTimeFilterDescriptor.FilterOperator;
-            _startDateTime = dateTimeFilterDescriptor.StartDateTime?.DateTime;
-            _startDateTime = dateTimeFilterDescriptor.EndDateTime?.DateTime;
         }
 
         protected virtual Task ApplyFilterAsync()
         {
-            var numericFilter = new DateTimeFilterDescriptor
+            var numericFilter = new BooleanFilterDescriptor
             {
                 PropertyName = PropertyName,
                 FilterOperator = _filterOperator,
-                StartDateTime = _startDateTime,
-                EndDateTime = _endDateTime,
             };
 
             return FilterState.AddFilterAsync(numericFilter);
@@ -97,8 +73,6 @@ namespace BlazorDataGridExample.Components
         protected virtual async Task RemoveFilterAsync()
         {
             _filterOperator = FilterOperatorEnum.None;
-            _startDateTime = null;
-            _endDateTime = null;
 
             await FilterState.RemoveFilterAsync(PropertyName);
         }

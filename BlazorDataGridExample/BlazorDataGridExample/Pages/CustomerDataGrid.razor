@@ -27,10 +27,24 @@ else
         </PropertyColumn>
         <PropertyColumn Title="Name" Property="@(c => c!.CustomerName)" Sortable="true" Align=Align.Start>
             <ColumnOptions>
-                <StringFilter PropertyName="CustomerID" FilterState="FilterState"></StringFilter>
+                <StringFilter PropertyName="CustomerName" FilterState="FilterState"></StringFilter>
             </ColumnOptions>
         </PropertyColumn>
-        <PropertyColumn Title="DeliveryAddress Line1" Property="@(c => c!.DeliveryAddressLine1)" Sortable="true" Align=Align.Center />
+        <PropertyColumn Title="Account Opened" Property="@(c => c!.AccountOpenedDate)" Format="yyyy-MM-dd" Sortable="true" Align=Align.Start>
+            <ColumnOptions>
+                <DateFilter PropertyName="AccountOpenedDate" FilterState="FilterState"></DateFilter>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Title="Is On Credit Hold" Property="@(c => c!.IsOnCreditHold)" Sortable="true" Align=Align.Start>
+            <ColumnOptions>
+                <BooleanFilter PropertyName="IsOnCreditHold" FilterState="FilterState"></BooleanFilter>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Title="Last Edited By" Property="@(c => c!.LastEditedByNavigation!.PreferredName)" Sortable="true" Align=Align.Start>
+            <ColumnOptions>
+                <StringFilter PropertyName="LastEditedByNavigation/PreferredName" FilterState="FilterState"></StringFilter>
+            </ColumnOptions>
+        </PropertyColumn>
     </FluentDataGrid>
 
     <FluentPaginator State="@Pagination" />
