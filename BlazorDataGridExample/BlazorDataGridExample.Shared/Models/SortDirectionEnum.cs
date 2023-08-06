@@ -5,7 +5,7 @@ namespace BlazorDataGridExample.Shared.Models
     /// <summary>
     /// Sort Direction.
     /// </summary>
-    public enum SortDirection
+    public enum SortDirectionEnum
     {
         /// <summary>
         /// Ascending.

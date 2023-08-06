@@ -15,6 +15,6 @@ namespace BlazorDataGridExample.Shared.Models
         /// <summary>
         /// Gets or sets the sort direction.
         /// </summary>
-        public required SortDirection SortDirection { get; set; }
+        public required SortDirectionEnum SortDirection { get; set; }
     }
 }

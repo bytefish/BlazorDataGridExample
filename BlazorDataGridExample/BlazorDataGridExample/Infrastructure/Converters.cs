@@ -2,7 +2,7 @@
 
 using BlazorDataGridExample.Shared.Models;
 using Microsoft.Fast.Components.FluentUI;
-using SortDirection = BlazorDataGridExample.Shared.Models.SortDirection;
+using SortDirectionEnum = BlazorDataGridExample.Shared.Models.SortDirectionEnum;
 using FluentUiSortDirection = Microsoft.Fast.Components.FluentUI.SortDirection;
 
 namespace BlazorDataGridExample.Infrastructure
@@ -36,14 +36,14 @@ namespace BlazorDataGridExample.Infrastructure
             };
         }
 
-        private static SortDirection ConvertSortDirection(FluentUiSortDirection source)
+        private static SortDirectionEnum ConvertSortDirection(FluentUiSortDirection source)
         {
             if (source == FluentUiSortDirection.Ascending)
             {
-                return SortDirection.Ascending;
+                return SortDirectionEnum.Ascending;
             }
 
-            return SortDirection.Descending;
+            return SortDirectionEnum.Descending;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 .Skip(skip)
                 .Take(top);
 
-            return (DataServiceQuery<TElement>)query;
+            return (DataServiceQuery<TElement>) query;
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace BlazorDataGridExample.Shared.Extensions
                 // Turn into OData string:
                 .Select(column =>
                 {
-                    var sortDirection = column.SortDirection == SortDirection.Descending ? "desc" : "asc";
+                    var sortDirection = column.SortDirection == SortDirectionEnum.Descending ? "desc" : "asc";
 
                     return $"{column.PropertyName} {sortDirection}";
                 });

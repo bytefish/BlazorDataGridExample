@@ -22,6 +22,5 @@ namespace BlazorDataGridExample.Infrastructure
 
             return Converters.ConvertToSortColumns(sortByProperties);
         }
-
     }
 }

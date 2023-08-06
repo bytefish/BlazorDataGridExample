@@ -223,6 +223,5 @@ namespace BlazorDataGridExample.Shared.Extensions
                 // ... in ISO 8601 Format
                 .ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
         }
-
     }
 }
