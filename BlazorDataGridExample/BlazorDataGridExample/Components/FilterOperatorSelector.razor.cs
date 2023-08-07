@@ -7,7 +7,7 @@ using Microsoft.Extensions.Localization;
 
 namespace BlazorDataGridExample.Components
 {
-    public partial class FilterSelector
+    public partial class FilterOperatorSelector
     {
         /// <summary>
         /// Localizer.
@@ -46,7 +46,6 @@ namespace BlazorDataGridExample.Components
         [Parameter]
         public FilterOperatorEnum FilterOperator { get; set; }
 
-        
         /// <summary>
         /// Invoked, when the Filter Operator has changed.
         /// </summary>

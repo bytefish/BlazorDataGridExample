@@ -7,7 +7,7 @@
     <FluentGrid Justify="JustifyContent.Center">
         <FluentGridItem xs="12">
             <FluentLabel Typo="Typography.Body">Filter Operator:</FluentLabel>
-            <FilterSelector FilterOperators="filterOperatorOptions" @bind-FilterOperator="_filterOperator"></FilterSelector>
+            <FilterOperatorSelector FilterOperators="filterOperatorOptions" @bind-FilterOperator="_filterOperator"></FilterOperatorSelector>
         </FluentGridItem>
         <FluentGridItem xs="6">
             <FluentButton Class="w-100" Appearance="Appearance.Neutral" OnClick="@(async () => await RemoveFilterAsync())">Reset</FluentButton>
