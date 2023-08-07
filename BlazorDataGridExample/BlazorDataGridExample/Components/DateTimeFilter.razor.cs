@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorDataGridExample.Components
 {
-
     public partial class DateTimeFilter
     {
         /// <summary>

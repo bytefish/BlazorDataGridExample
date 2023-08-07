@@ -14,6 +14,12 @@ namespace BlazorDataGridExample.Pages
     public partial class CustomerDataGrid
     {
         /// <summary>
+        /// The <see cref="DataServiceContext"/> to access the OData Service.
+        /// </summary>
+        [Inject]
+        public required Container Container { get; set; }
+
+        /// <summary>
         /// Provides the Data Items.
         /// </summary>
         private GridItemsProvider<Customer> CustomerProvider = default!;
