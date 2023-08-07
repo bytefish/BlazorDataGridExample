@@ -4,13 +4,13 @@
 [Fluent UI Blazor]: https://www.fluentui-blazor.net/
 
 This repository shows how to use Blazor, Fluent UI Blazor and OData to display data 
-in the Fluent UI Data Grid. It uses the WideWorldImporters Backend to provide 
-the data, see:
+in the Fluent UI Data Grid. It uses the WideWorldImporters Backend to provide the 
+data, see:
 
-* [https://www.bytefish.de/blog/aspnet_core_odata_example.html](https://www.bytefish.de/blog/aspnet_core_odata_example.html)
+* [https://www.bytefish.de/blog/blazor_fluentui_and_odata.html](https://www.bytefish.de/blog/blazor_fluentui_and_odata.html)
 
 The idea is to use an ASP.NET Core OData Backend and a Frontend using Blazor with FluentUI Components. We 
-are going to use the FluentUI DataGrid to display data. The final DataGrid is going to look like this:
+are going to its a DataGrid to display data. The final DataGrid is going to look like this:
 
 <a href="https://raw.githubusercontent.com/bytefish/BlazorDataGridExample/main/Screenshots/Customer_Grid.jpg">
     <img src="https://raw.githubusercontent.com/bytefish/BlazorDataGridExample/main/Screenshots/Customer_Grid.jpg" alt="The Blazor Frontend with the FluentUI DataGrid" width="50%" />
